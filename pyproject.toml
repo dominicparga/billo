@@ -1,0 +1,40 @@
+[tool.poetry]
+name = "billo"
+version = "0.1.0"
+description = "Financing and Trading Supporter"
+authors = ["dominicparga <dominic.parga@icloud.com>"]
+maintainers = ["dominicparga <dominic.parga@icloud.com>"]
+readme = "README.md"
+license = "Apache-2.0"
+packages = [{ include = "billo" }]
+# include = [{ path = "dependencies", format = ["sdist", "wheel"] }]
+homepage = "https://github.com/dominicparga/billo"
+repository = "https://github.com/dominicparga/billo"
+documentation = "https://github.com/dominicparga/billo"
+[tool.poetry.urls]
+"Issues" = "https://github.com/dominicparga/billo/issues"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+
+# binaries and extras
+[tool.poetry.scripts]
+billo = "billo.bin.cli:main"
+[tool.poetry.extras]
+# -
+
+
+[tool.poetry.dependencies]
+python = "^3.10"
+errorhandling = "~1"
+requests = "*"
+# extras' dependencies, hence optional by default
+# -
+[tool.poetry.group.dev.dependencies]
+# linting and formatting
+ruff = "*"
+# python testing
+pytest = "*"

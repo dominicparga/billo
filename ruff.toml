@@ -1,0 +1,12 @@
+line-length = 120
+indent-width = 4
+unsafe-fixes = true
+
+[lint]
+# https://docs.astral.sh/ruff/rules
+select = []
+ignore = []
+
+[format]
+quote-style = "double"
+indent-style = "tab"

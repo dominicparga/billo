@@ -1,0 +1,54 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the
+// README at: https://github.com/devcontainers/templates/tree/main/src/ubuntu
+{
+	"name": "billo",
+	// Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
+    "build": {
+        "context": "..",
+        "dockerfile": "Dockerfile"
+    },
+
+	"postStartCommand": "bash /workspaces/${localWorkspaceFolderBasename}/.devcontainer/postStartCommand.bash",
+
+	"customizations": {
+		"vscode": {
+            "settings": {
+                "extensions.ignoreRecommendations": true
+            },
+			"extensions": [
+                // color themes
+                "dracula-theme.theme-dracula",
+                "arcticicestudio.nord-visual-studio-code",
+                // icon themes
+                "pkief.material-icon-theme",
+
+                // shows trailing whitespaces
+                "shardulm94.trailing-spaces",
+
+                // data files
+                "mechatroner.rainbow-csv",
+                "redhat.vscode-yaml",
+                "redhat.vscode-xml",
+                "tamasfe.even-better-toml",
+
+                // git
+                "donjayamanne.githistory",
+                "eamodio.gitlens",
+
+                // markdown
+                "DavidAnson.vscode-markdownlint",
+
+                // bash
+                "timonwong.shellcheck",
+
+                // PYTHON
+                // general
+                "ms-python.python",
+                // language server
+                "ms-python.pylance",
+                // linting
+                "charliermarsh.ruff"
+			]
+		}
+    }
+}
