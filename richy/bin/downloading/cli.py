@@ -4,10 +4,9 @@ import sys
 from enum import Enum
 from getpass import getpass
 
+import richy.bin.downloading.time_series_daily
 from errorhandling import ErrorCode
-
-import billo.bin.downloading.time_series_daily
-from billo._lib.constants import ALPHA_VANTAGE_API_KEY
+from richy._lib.constants import ALPHA_VANTAGE_API_KEY
 
 from ._datastructures import API_KEY_TYPE
 
@@ -36,7 +35,7 @@ def setup_cmdline_parser(parser: argparse.ArgumentParser):
 
 	help_msg = ""
 	subparser = subparsers.add_parser(name=_DownloadingCmdlineExecution.TIME_SERIES_DAILY.value, help=help_msg)
-	billo.bin.downloading.time_series_daily.cli.setup_cmdline_parser(parser=subparser)
+	richy.bin.downloading.time_series_daily.cli.setup_cmdline_parser(parser=subparser)
 	subparser.set_defaults(downloading_cmdline_execution=_DownloadingCmdlineExecution.TIME_SERIES_DAILY)
 
 
@@ -61,7 +60,7 @@ def main(parsed_args: argparse.Namespace) -> ErrorCode:
 	# paid plan: 75 per minute, inf per day
 
 	if _DownloadingCmdlineExecution.TIME_SERIES_DAILY == parsed_args.downloading_cmdline_execution:
-		return billo.bin.downloading.time_series_daily.cli.main(
+		return richy.bin.downloading.time_series_daily.cli.main(
 			api_key=api_key, is_user_interaction_allowed=is_user_interaction_allowed, parsed_args=parsed_args
 		)
 	else:

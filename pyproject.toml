@@ -1,18 +1,18 @@
 [tool.poetry]
-name = "billo"
+name = "richy"
 version = "0.1.0"
 description = "Financing and Trading Supporter"
 authors = ["dominicparga <dominic.parga@icloud.com>"]
 maintainers = ["dominicparga <dominic.parga@icloud.com>"]
 readme = "README.md"
 license = "Apache-2.0"
-packages = [{ include = "billo" }]
+packages = [{ include = "richy" }]
 # include = [{ path = "dependencies", format = ["sdist", "wheel"] }]
-homepage = "https://github.com/dominicparga/billo"
-repository = "https://github.com/dominicparga/billo"
-documentation = "https://github.com/dominicparga/billo"
+homepage = "https://github.com/dominicparga/richy"
+repository = "https://github.com/dominicparga/richy"
+documentation = "https://github.com/dominicparga/richy"
 [tool.poetry.urls]
-"Issues" = "https://github.com/dominicparga/billo/issues"
+"Issues" = "https://github.com/dominicparga/richy/issues"
 
 
 [build-system]
@@ -22,7 +22,7 @@ build-backend = "poetry.core.masonry.api"
 
 # binaries and extras
 [tool.poetry.scripts]
-billo = "billo.bin.cli:main"
+richy = "richy.bin.cli:main"
 [tool.poetry.extras]
 # -
 

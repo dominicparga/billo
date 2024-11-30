@@ -4,7 +4,7 @@
 # shellcheck disable=SC2088
 git config --global include.path '~/.gitconfig.aliases'
 
-REPO_DIR='/workspaces/billo'
+REPO_DIR='/workspaces/richy'
 if [ -d "${REPO_DIR}" ]; then
 	git config --global --add safe.directory "${REPO_DIR}"
 
