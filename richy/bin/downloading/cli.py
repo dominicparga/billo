@@ -1,14 +1,13 @@
 import argparse
 import logging
-import sys
 from enum import Enum
 from getpass import getpass
 
-import richy.bin.downloading.time_series_daily
 from errorhandling import ErrorCode
-from richy._lib.constants import ALPHA_VANTAGE_API_KEY
 
-from ._datastructures import API_KEY_TYPE
+import richy.bin.downloading.time_series
+from richy._lib.constants import ALPHA_VANTAGE_API_KEY
+from richy._lib.downloading import API_KEY_TYPE
 
 
 class _DownloadingCmdlineExecution(Enum):
@@ -17,9 +16,6 @@ class _DownloadingCmdlineExecution(Enum):
 
 def setup_cmdline_parser(parser: argparse.ArgumentParser):
 	help_msg: str
-
-	help_msg = "Ask user interactively for missing info."
-	parser.add_argument("--interactive", action="store_true", required=False, default=None, help=help_msg)
 
 	help_msg = (
 		"The API key for accessing alphavantage.co. "
@@ -35,13 +31,11 @@ def setup_cmdline_parser(parser: argparse.ArgumentParser):
 
 	help_msg = ""
 	subparser = subparsers.add_parser(name=_DownloadingCmdlineExecution.TIME_SERIES_DAILY.value, help=help_msg)
-	richy.bin.downloading.time_series_daily.cli.setup_cmdline_parser(parser=subparser)
+	richy.bin.downloading.time_series.cli.setup_cmdline_parser(parser=subparser)
 	subparser.set_defaults(downloading_cmdline_execution=_DownloadingCmdlineExecution.TIME_SERIES_DAILY)
 
 
-def main(parsed_args: argparse.Namespace) -> ErrorCode:
-	is_user_interaction_allowed: bool = parsed_args.interactive
-
+def main(is_interactive: bool, parsed_args: argparse.Namespace) -> ErrorCode:
 	parsed_args_api_key = parsed_args.api_key
 	api_key: API_KEY_TYPE | None = None
 	if not api_key:
@@ -49,7 +43,7 @@ def main(parsed_args: argparse.Namespace) -> ErrorCode:
 	if not api_key:
 		api_key = ALPHA_VANTAGE_API_KEY
 	if not api_key:
-		if is_user_interaction_allowed:
+		if is_interactive:
 			api_key = getpass("Please enter your ALPHA_VANTAGE_API_KEY: ")
 	if not api_key:
 		logging.error("Missing API Key")
@@ -59,9 +53,9 @@ def main(parsed_args: argparse.Namespace) -> ErrorCode:
 	# free plan: 5 per minute, 500 per day
 	# paid plan: 75 per minute, inf per day
 
-	if _DownloadingCmdlineExecution.TIME_SERIES_DAILY == parsed_args.downloading_cmdline_execution:
-		return richy.bin.downloading.time_series_daily.cli.main(
-			api_key=api_key, is_user_interaction_allowed=is_user_interaction_allowed, parsed_args=parsed_args
+	if parsed_args.downloading_cmdline_execution == _DownloadingCmdlineExecution.TIME_SERIES_DAILY:
+		return richy.bin.downloading.time_series.cli.main(
+			api_key=api_key, is_interactive=is_interactive, parsed_args=parsed_args
 		)
 	else:
 		return 1

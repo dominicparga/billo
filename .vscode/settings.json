@@ -6,7 +6,8 @@
 
     "files.associations": {
         ".dockerignore": "ignore",
-        "TAG_EDITMSG": "git-commit"
+        "TAG_EDITMSG": "git-commit",
+		".env*": "properties"
     },
 
     // python

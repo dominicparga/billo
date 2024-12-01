@@ -29,7 +29,10 @@ if not _is_running_as_app_not_as_script:
 			k = k.strip().strip('"')
 			v = v.strip().strip('"')
 
-			os.environ[k] = v
+			if k not in os.environ:
+				os.environ[k] = v
 
 
 ALPHA_VANTAGE_API_KEY: str | None = os.environ.get("ALPHA_VANTAGE_API_KEY")
+RICHY_SERVICE_HOST: str | None = os.environ.get("RICHY_SERVICE_HOST")
+RICHY_SERVICE_PORT: int | None = int(os.environ["RICHY_SERVICE_PORT"]) if os.environ.get("RICHY_SERVICE_PORT") else None

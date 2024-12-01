@@ -4,7 +4,7 @@ unsafe-fixes = true
 
 [lint]
 # https://docs.astral.sh/ruff/rules
-select = []
+select = ["F401"]
 ignore = []
 
 [format]

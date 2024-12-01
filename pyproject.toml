@@ -28,9 +28,12 @@ richy = "richy.bin.cli:main"
 
 
 [tool.poetry.dependencies]
-python = "^3.10"
 errorhandling = "~1"
-requests = "*"
+fastapi = "~0.115"
+python = "^3.10"
+requests = "~2"
+subprocessmagic = "~1"
+uvicorn = "~0.32"
 # extras' dependencies, hence optional by default
 # -
 [tool.poetry.group.dev.dependencies]

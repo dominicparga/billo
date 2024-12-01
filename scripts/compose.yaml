@@ -1,0 +1,8 @@
+version: '3.9'
+
+services:
+  richy:
+    image: dominicparga/richy:latest
+    ports:
+      - "80:80"
+      - "443:443"

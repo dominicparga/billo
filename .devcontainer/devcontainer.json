@@ -3,11 +3,9 @@
 {
 	"name": "richy",
 	// Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
-    "build": {
-        "context": "..",
-        "dockerfile": "Dockerfile"
-    },
+	"image": "docker.io/dominicparga/devcontainer:latest",
 
+	"remoteUser": "vscode",
 	"postStartCommand": "bash /workspaces/${localWorkspaceFolderBasename}/.devcontainer/postStartCommand.bash",
 
 	"customizations": {
