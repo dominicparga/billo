@@ -1,3 +1,4 @@
+import logging
 import os
 import sys
 from pathlib import Path
@@ -16,21 +17,25 @@ else:
 
 # read in .env
 if not _is_running_as_app_not_as_script:
-	with open(file=_repo_root_dirpath.joinpath(".env"), mode="r", encoding="UTF-8") as env_file:
-		for line in env_file.readlines():
-			line = line.strip()
-			if line.startswith("#"):
-				continue
-			if len(line) == 0:
-				continue
+	env_filepath: Path = _repo_root_dirpath.joinpath(".env")
+	if env_filepath.exists():
+		with open(file=_repo_root_dirpath.joinpath(".env"), mode="r", encoding="UTF-8") as env_file:
+			for line in env_file.readlines():
+				line = line.strip()
+				if line.startswith("#"):
+					continue
+				if len(line) == 0:
+					continue
 
-			k, v = line.split("=")
+				k, v = line.split("=")
 
-			k = k.strip().strip('"')
-			v = v.strip().strip('"')
+				k = k.strip().strip('"')
+				v = v.strip().strip('"')
 
-			if k not in os.environ:
-				os.environ[k] = v
+				if k not in os.environ:
+					os.environ[k] = v
+	else:
+		logging.info("Env file {} does not exist.", env_filepath)
 
 
 ALPHA_VANTAGE_API_KEY: str | None = os.environ.get("ALPHA_VANTAGE_API_KEY")
