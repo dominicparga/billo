@@ -41,3 +41,6 @@ if not _is_running_as_app_not_as_script:
 ALPHA_VANTAGE_API_KEY: str | None = os.environ.get("ALPHA_VANTAGE_API_KEY")
 RICHY_SERVICE_HOST: str | None = os.environ.get("RICHY_SERVICE_HOST")
 RICHY_SERVICE_PORT: int | None = int(os.environ["RICHY_SERVICE_PORT"]) if os.environ.get("RICHY_SERVICE_PORT") else None
+RICHY_SERVICE_CERT_PEM_FILEPATH: str | None = os.environ.get("RICHY_SERVICE_CERT_PEM_FILEPATH")
+RICHY_SERVICE_KEY_PEM_FILEPATH: str | None = os.environ.get("RICHY_SERVICE_KEY_PEM_FILEPATH")
+RICHY_SERVICE_KEY_PEM_PASSWORD: str | None = os.environ.get("RICHY_SERVICE_KEY_PEM_PASSWORD")

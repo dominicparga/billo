@@ -3,7 +3,13 @@ import logging
 
 from errorhandling import ErrorCode
 
-from richy._lib.constants import RICHY_SERVICE_HOST, RICHY_SERVICE_PORT
+from richy._lib.constants import (
+	RICHY_SERVICE_CERT_PEM_FILEPATH,
+	RICHY_SERVICE_HOST,
+	RICHY_SERVICE_KEY_PEM_FILEPATH,
+	RICHY_SERVICE_KEY_PEM_PASSWORD,
+	RICHY_SERVICE_PORT,
+)
 
 
 def setup_cmdline_parser(parser: argparse.ArgumentParser):
@@ -36,5 +42,13 @@ def main(is_interactive: bool, parsed_args: argparse.Namespace) -> ErrorCode:
 
 	import uvicorn
 
-	uvicorn.run("richy.bin.service.start._mod:app", host=host, port=port, reload=True)
+	uvicorn.run(
+		mod.app,
+		host=host,
+		port=port,
+		reload=True,
+		ssl_certfile=RICHY_SERVICE_CERT_PEM_FILEPATH,
+		ssl_keyfile=RICHY_SERVICE_KEY_PEM_FILEPATH,
+		ssl_keyfile_password=RICHY_SERVICE_KEY_PEM_PASSWORD,
+	)
 	return 0

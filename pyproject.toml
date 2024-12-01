@@ -28,6 +28,7 @@ richy = "richy.bin.cli:main"
 
 
 [tool.poetry.dependencies]
+cryptography = "*"
 errorhandling = "~1"
 fastapi = "~0.115"
 python = "^3.10"
