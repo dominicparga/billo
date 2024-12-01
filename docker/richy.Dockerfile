@@ -6,6 +6,17 @@ WORKDIR /app/${MY_APP}
 
 # Create user
 USER root
+RUN apt-get update &&\
+    apt-get install --yes --no-install-suggests --no-install-recommends \
+        # basics
+        ca-certificates \
+        git \
+        less \
+        openssh-client \
+        vim \
+        \
+    &&\
+    apt-get clean
 RUN useradd --system --create-home --shell /bin/bash ${USERNAME}
     #
     # [Optional] Add sudo support. Omit if you don't need to install software after connecting.
