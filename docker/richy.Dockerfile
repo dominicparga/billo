@@ -32,6 +32,7 @@ WORKDIR /workdir
 
 # Install dependencies
 RUN pip install --no-cache-dir 'richy @ git+https://github.com/dominicparga/richy.git@stable'
+ENV PATH="/home/${USERNAME}/.local/bin:${PATH}"
 
 # Expose the port the app runs on
 EXPOSE 80
