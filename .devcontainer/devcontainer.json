@@ -45,7 +45,10 @@
                 // language server
                 "ms-python.pylance",
                 // linting
-                "charliermarsh.ruff"
+                "charliermarsh.ruff",
+
+				// docker
+				"ms-azuretools.vscode-docker"
 			]
 		}
     }
