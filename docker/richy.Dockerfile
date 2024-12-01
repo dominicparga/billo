@@ -36,6 +36,7 @@ ENV PATH="/home/${USERNAME}/.local/bin:${PATH}"
 
 # Expose the port the app runs on
 EXPOSE 80
+EXPOSE 443
 
 # credits 8)
 LABEL maintainer="dominic.parga@icloud.com"
